@@ -1,0 +1,6 @@
+website
+  host：192.168.7.50
+
+logininfo:
+  username: amdin
+  password: rootroot
