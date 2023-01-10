@@ -2,7 +2,7 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/.idea/DFX自动化.iml" filepath="$PROJECT_DIR$/.idea/DFX自动化.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/DFX_UI.iml" filepath="$PROJECT_DIR$/.idea/DFX_UI.iml" />
     </modules>
   </component>
 </project>

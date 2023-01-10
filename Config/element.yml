@@ -1,0 +1,10 @@
+class:
+
+  username: user-input el-input el-input--suffix
+  password: el-input el-input--suffix
+  login_submit: el-button loginbtn el-button--default
+  logging_text: el-dropdown-link el-dropdown-selfdefine
+
+xpath:
+
+  flash_error: //*[@id="app"]/div/div[3]/div[1]/span

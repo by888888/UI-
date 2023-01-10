@@ -7,5 +7,10 @@ import yaml
 
 def parse_yml(file, section, key):
     with open(file, 'r', encoding='utf8') as f:
-        data = yaml.load(file, Loader=yaml.FullLoader)
+        data = yaml.load(f, Loader=yaml.FullLoader)
         return data[section][key]
+
+
+if __name__ == '__main__':
+    value = parse_yml('../Config/element.yml', 'xpath', 'flash_error')
+    print(value)

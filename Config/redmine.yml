@@ -1,6 +1,8 @@
-website
-  host：192.168.7.50
+website:
+
+  host: http://192.168.7.131:8081/#/login
 
 logininfo:
+
   username: amdin
   password: rootroot

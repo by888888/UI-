@@ -67,15 +67,16 @@ class Base(object):
         except Exception as e:
             raise e
 
-    if __name__ == '__main__':
-        from selenium import webdriver
-        from time import sleep
 
-        # driver = webdriver.Chrome()
-        # driver.get('https://www.baidu.com/')
-        # a = "id1,kw"
-        # bp = Base(driver)
-        # bp.get_element(a).send_keys('11111')
-        # # bp.get_element("plink,地图").click()
-        # sleep(2)
-        # driver.quit()
+# if __name__ == '__main__':
+#     from selenium import webdriver
+#     from time import sleep
+#
+#     driver = webdriver.Chrome("D:/chromedriver/chromedriver.exe")
+#     driver.get('https://www.baidu.com/')
+#     a = "id,kw"
+#     bp = Base(driver)
+#     p = bp.get_element(a).send_keys('11111')
+#     # bp.get_element("plink,地图").click()
+#     sleep(2)
+#     driver.quit()
