@@ -1,10 +1,6 @@
-class:
-
-  username: user-input el-input el-input--suffix
-  password: el-input el-input--suffix
-  login_submit: el-button loginbtn el-button--default
-  logging_text: el-dropdown-link el-dropdown-selfdefine
-
-xpath:
-
-  flash_error: //*[@id="app"]/div/div[3]/div[1]/span
+css:
+  username: .user-input > input:nth-child(1)
+  password: div.el-form-item:nth-child(2) > div:nth-child(2) > div:nth-child(1) > input:nth-child(1)
+  login_submit: .el-button
+  logging_text: .middle-two > span:nth-child(1)
+  flash_error: .commonHeader > div:nth-child(2) > span:nth-child(1)

@@ -11,6 +11,7 @@ def parse_yml(file, section, key):
         return data[section][key]
 
 
-if __name__ == '__main__':
-    value = parse_yml('../Config/element.yml', 'xpath', 'flash_error')
-    print(value)
+# if __name__ == '__main__':
+#     value = parse_yml('../Config/redmine.yml', 'website', 'host')
+#     print(value)
+
