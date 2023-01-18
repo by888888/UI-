@@ -1,6 +1,6 @@
 from selenium import webdriver
 import time, pytest
-from Test.PageObject import login_page, project_new_page, project_list_page
+from Test.PageObject import login_page, project_new_page, add_task_dfx
 from Common.parse_yml import parse_yml
 
 host = parse_yml("../../Config/redmine.yml", "websites", "host")

@@ -1,6 +1,14 @@
-css:
-  username: .user-input > input:nth-child(1)
-  password: div.el-form-item:nth-child(2) > div:nth-child(2) > div:nth-child(1) > input:nth-child(1)
-  login_submit: .el-button
-  logging_text: .middle-two > span:nth-child(1)
-  flash_error: .commonHeader > div:nth-child(2) > span:nth-child(1)
+login:
+  username: css,.user-input > input:nth-child(1)
+  password: css,div.el-form-item:nth-child(2) > div:nth-child(2) > div:nth-child(1) > input:nth-child(1)
+  login_submit: css,.el-button
+  logging_text: css,.app > div:nth-child(1) > span:nth-child(1)
+  flash_error: css,#app > div > div.middle > div.middle-two > span
+
+dfx_task:
+  add_task: css,.app > div:nth-child(1) > button:nth-child(2)
+  upload_dragger: css,.el-upload-dragger
+  rulegrop: xpath,//input[@placeholder='请选择规则集名称']
+  rulegrop_select: xpath,/html/body/div[3]/div[1]/div[1]/ul/li[11]/span
+  objdect_all: //*[@id="app"]/section/section/main/div[1]/div[2]/div/form/div[10]/div/div[1]/label[3]/span[1]/span
+

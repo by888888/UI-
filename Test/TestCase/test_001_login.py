@@ -2,21 +2,16 @@ from selenium import webdriver
 import time, pytest, allure
 from Test.PageObject import login_page
 from Common.parse_yml import parse_yml
+from Common.parse_csv import parse_csv
 
 host = parse_yml("../../Config/redmine.yml", "website", "host")
-# 通过时间戳构造唯一项目名
-project_name = 'project_{}'.format(time.time())
-# username = parse_yml("../Config/redmine.yml", "logininfo", "username")
-# password = parse_yml("../Config/redmine.yml", "logininfo", "password")
-# password1 = parse_yml("../../Config/redmine.yml", "logininfo","password")
-# print(password1)
-username = "admin"
-password = "admin"
+data = parse_csv("../../Data/test_001_login.csv")
 
 
-class TestNewProject():
+@pytest.mark.parametrize(("username", "password", "status"), data)
+class TestLogin():
 
-    def test_login(self):
+    def test_login(self, username, password, status):
         self.driver = webdriver.Chrome("D:/chromedriver/chromedriver.exe")
         self.driver.maximize_window()
         self.driver.implicitly_wait(20)
@@ -25,10 +20,12 @@ class TestNewProject():
         # 登录
         login_page.LoginScenario(self.driver).login(username, password)
         # 登录成功后的提示
-        login_success = login_page.LoginOper(self.driver).get_login_name()
-        login_failure = login_page.LoginOper(self.driver).get_login_failed_info()
-        assert login_success == 'Basic'
-        assert login_failure == 'Vayo-DFX设计执行系统'
+        if status == '100':
+            login_success = login_page.LoginOper(self.driver).get_login_name()
+            assert login_success == 'DFX分析'
+        elif status == '101':
+            login_failure = login_page.LoginOper(self.driver).get_login_failed_info()
+            assert login_failure == 'Vayo-DFX设计执行系统'
         self.driver.close()
 # #
 # #

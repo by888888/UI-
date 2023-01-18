@@ -6,13 +6,12 @@ from selenium.webdriver import ActionChains
 from Base.base import Base
 from Common.parse_yml import parse_yml
 
-username = parse_yml("../../Config/element.yml", "css", "username")
-password = parse_yml('../../Config/element.yml', "css", "password")
-# print(password)
-# login-submit = parse_yml("../../Config/element.yml", "class","login-submit")
-login_submit = parse_yml("../../Config/element.yml", "css", "login_submit")
-logging_text = parse_yml("../../Config/element.yml", "css", "logging_text")
-flash_error = parse_yml("../../Config/element.yml", "css", "flash_error")
+username = parse_yml("../../Config/element.yml", "login", "username")
+password = parse_yml('../../Config/element.yml', "login", "password")
+login_submit = parse_yml("../../Config/element.yml", "login", "login_submit")
+logging_text = parse_yml("../../Config/element.yml", "login", "logging_text")
+flash_error = parse_yml("../../Config/element.yml", "login", "flash_error")
+
 
 
 class LoginPage(object):
@@ -24,31 +23,31 @@ class LoginPage(object):
         # 查找并返回"用户名"文本框元素
         # ele = self.driver.find_element_by_id('username')
         # ele = self.driver.find_element_by_name('username')
-        ele = Base(self.driver).get_element('css,username')
+        ele = Base(self.driver).get_element(username)
         return ele
 
     def find_password(self):
         # 查找并返回"密码"文本框元素
         # ele = self.driver.find_element_by_id('password')
-        ele = Base(self.driver).get_element('css,password')
+        ele = Base(self.driver).get_element(password)
         return ele
 
     def find_login_btn(self):
         # 查找并返回"登录"按钮元素
         # ele = self.driver.find_element_by_id('login-submit')
-        ele = Base(self.driver).get_element('css,login_submit')
+        ele = Base(self.driver).get_element(login_submit)
         return ele
 
     def find_login_name(self):
         # 查找并返回登录成功后的用户名元素
         # ele = self.driver.find_element_by_id('loggedas')
-        ele = Base(self.driver).get_element('css,logging_text')
+        ele = Base(self.driver).get_element(logging_text)
         return ele
 
     def find_login_failed_info(self):
         # 查找并返回登录失败后的提示信息元素
         # ele = self.driver.find_element_by_id('flash_error')
-        ele = Base(self.driver).get_element('css,flash_error')
+        ele = Base(self.driver).get_element(flash_error)
         return ele
 
     # def find_verification_code(self):
@@ -105,3 +104,5 @@ class LoginScenario(object):
         self.login_oper.input_password(password)
         # self.login_oper.input_verification_code()
         self.login_oper.click_login_btn()
+
+
