@@ -5,15 +5,18 @@
 from selenium.webdriver import ActionChains
 from Base.base import Base
 from Common.parse_yml import parse_yml
+from Common.get_project_path import get_project_path
+import os
 
-username = parse_yml("../../Config/element.yml", "login", "username")
-password = parse_yml('../../Config/element.yml', "login", "password")
-login_submit = parse_yml("../../Config/element.yml", "login", "login_submit")
-logging_text = parse_yml("../../Config/element.yml", "login", "logging_text")
-flash_error = parse_yml("../../Config/element.yml", "login", "flash_error")
+element = os.path.join(get_project_path(), "Config", "element.yml")
+username = parse_yml(element, "login", "username")
+password = parse_yml(element, "login", "password")
+login_submit = parse_yml(element, "login", "login_submit")
+logging_text = parse_yml(element, "login", "logging_text")
+flash_error = parse_yml(element, "login", "flash_error")
 
 
-
+# 查找定位元素
 class LoginPage(object):
     def __init__(self, driver):
         # 私有方法
@@ -104,5 +107,3 @@ class LoginScenario(object):
         self.login_oper.input_password(password)
         # self.login_oper.input_verification_code()
         self.login_oper.click_login_btn()
-
-

@@ -6,9 +6,16 @@ login:
   flash_error: css,#app > div > div.middle > div.middle-two > span
 
 dfx_task:
-  add_task: css,.app > div:nth-child(1) > button:nth-child(2)
-  upload_dragger: css,.el-upload-dragger
+  # 递交任务
+  add_task_start: xpath,/html/body/div/section/section/main/div/div/div[1]/button
+  #上传工程
+  upload_dragged: name,file
+  #点击规则集下拉框
   rulegrop: xpath,//input[@placeholder='请选择规则集名称']
+  #选择规则集
   rulegrop_select: xpath,/html/body/div[3]/div[1]/div[1]/ul/li[11]/span
-  objdect_all: //*[@id="app"]/section/section/main/div[1]/div[2]/div/form/div[10]/div/div[1]/label[3]/span[1]/span
+  #选择对象--全部
+  object_all: xpath,//*[@id="app"]/section/section/main/div[1]/div[2]/div/form/div[10]/div/div[1]/label[3]/span[1]/span
+  #检测/递交任务按钮
+  add_task_finally : css,button.el-button--primary:nth-child(1) > span:nth-child(1)
 
