@@ -9,7 +9,9 @@ dfx_task:
   # 递交任务
   add_task_start: xpath,/html/body/div/section/section/main/div/div/div[1]/button
   #上传工程
-  upload_dragged: name,file
+  upload_dragged: xpath,//*[@id='app']/section/section/main/div/div[2]/div/form/div[2]/div[2]/div/div/input
+  #是否选择上一次选择，选择否
+  last_selection: css,.el-message-box__btns > button:nth-child(1) > span:nth-child(1)
   #点击规则集下拉框
   rulegrop: xpath,//input[@placeholder='请选择规则集名称']
   #选择规则集

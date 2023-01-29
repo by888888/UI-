@@ -81,7 +81,7 @@ class LoginOper(object):
 
     def click_login_btn(self):
         ele = self.login_page.find_login_btn()
-        ActionChains(self.driver).double_click(ele).perform()
+        ActionChains(self.driver).click(ele).perform()
 
     def get_login_name(self):
         # 返回登录成功后的用户名元素

@@ -67,15 +67,25 @@ class Base(object):
         except Exception as e:
             raise e
 
-# if __name__ == '__main__':
-#     from selenium import webdriver
-#     from time import sleep
-#
-#     driver = webdriver.Chrome("D:/chromedriver/chromedriver.exe")
-#     driver.get('http://192.168.7.131:8081/#/login')
-#     a = "css,.user-input > input:nth-child(1)"
-#     bp = Base(driver)
-#     p = bp.get_element(a).send_keys('admin')
-#     # bp.get_element("plink,地图").click()
-#     sleep(2)
-#     driver.quit()
+if __name__ == '__main__':
+    from selenium import webdriver
+    from time import sleep
+    driver = webdriver.Chrome("D:/chromedriver/chromedriver.exe")
+    driver.get('http://192.168.7.131:8081/#/login')
+    driver.maximize_window()
+    a = "css,.user-input > input:nth-child(1)"
+    b = "css,div.el-form-item:nth-child(2) > div:nth-child(2) > div:nth-child(1) > input:nth-child(1)"
+    c = "css,.el-button"
+    d = "xpath,/html/body/div/section/section/main/div/div/div[1]/button"
+    e = "xpath,//*[@id='app']/section/section/main/div/div[2]/div/form/div[2]/div[2]/div/div/input"
+    # BP1 = Base(driver)
+    bp = Base(driver)
+    p1 = bp.get_element(a).send_keys('admin')
+    p2 = bp.get_element(b).send_keys('admin')
+    p3 = bp.get_element(c).click()
+    sleep(2)
+    p4 = bp.get_element(d).click()
+    p5 = bp.get_element(e).send_keys("C:\\Users\\Administrator\\Desktop\\ODB\\PCADEMODFM_V1.zip")
+    # bp.get_element("plink,地图").click()
+
+    # driver.quit()
