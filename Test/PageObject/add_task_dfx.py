@@ -1,12 +1,14 @@
 '''
 "项目列表"页面
 '''
+from selenium.webdriver.support.wait import WebDriverWait
 from selenium.webdriver import ActionChains
 from Base.base import Base
 from Common.parse_yml import parse_yml
-import os
+import os, time
 from Common.get_project_path import get_project_path
 from Common import public_method
+
 element = os.path.join(get_project_path(), "Config", "element.yml")
 add_task_start = parse_yml(element, "dfx_task", "add_task_start")
 upload_dragged = parse_yml(element, "dfx_task", "upload_dragged")
@@ -15,7 +17,12 @@ rulegrop = parse_yml(element, "dfx_task", "rulegrop")
 rulegrop_select = parse_yml(element, "dfx_task", "rulegrop_select")
 object_all = parse_yml(element, "dfx_task", "object_all")
 add_task_finally = parse_yml(element, "dfx_task", "add_task_finally")
-print(add_task_start)
+object_text = parse_yml(element, "dfx_task", "object_text")
+add_task_success_info = parse_yml(element, "dfx_task", "add_task_success_info")
+object_all_point = parse_yml(element, "dfx_task", "object_all_point")
+
+
+# print(add_task_start)
 
 
 # 查找定位元素
@@ -48,8 +55,20 @@ class AddTaskDfx(object):
         ele = Base(self.driver).get_element(object_all)
         return ele
 
+    def find_object_text(self):
+        ele = Base(self.driver).get_element(object_text)
+        return ele
+
     def find_add_task_finally(self):
         ele = Base(self.driver).get_element(add_task_finally)
+        return ele
+
+    def find_add_task_success_info(self):
+        ele = Base(self.driver).get_element(add_task_finally)
+        return ele
+
+    def find_object_all_point(self):
+        ele = Base(self.driver).get_element(object_all_point)
         return ele
 
 
@@ -95,22 +114,36 @@ class AddTaskDfxOper(object):
         ele = self.add_task.find_add_task_finally()
         ActionChains(self.driver).click(ele).perform()
 
+    # 查找递交任务后的元素
+    def get_add_task_success_info_text(self):
+        return self.add_task.find_add_task_success_info().text()
+
 
 # 页面业务场景层
 class TaskDfxScenario(object):
     def __init__(self, driver):
         self.add_dfx_task = AddTaskDfxOper(driver)
+        self.find_task_element = AddTaskDfx(driver)
+        self.public_method = public_method.public_method(driver)
 
     def add_task(self, file):
         # 定义一个递交任务的场景
         self.add_dfx_task.click_add_task_start_btn()
         self.add_dfx_task.input_file(file)
-        public_method.publicmethod.scrollheight()
+        # 等待最后一次选择的出现
+        self.public_method.show_wait(self.find_task_element.find_last_selection())
         self.add_dfx_task.click_last_selection_btn()
+        self.public_method.scroll_height(object_text)
+        time.sleep(2)
         self.add_dfx_task.click_rulegrop_btn()
+        self.public_method.show_wait(self.find_task_element.find_rulegrop_select())
         self.add_dfx_task.click_rulegrop_select()
         self.add_dfx_task.click_object_all_btn()
+        self.public_method.show_wait(self.find_task_element.find_object_all_point())
         self.add_dfx_task.click_add_task_finally_btn()
+        self.public_method.show_wait(self.find_task_element.find_add_task_success_info())
+
+
 
 # if __name__ == '__main__':
 #     from selenium import webdriver

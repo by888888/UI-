@@ -14,18 +14,20 @@ file = parse_csv(file_path)
 @pytest.mark.parametrize(("file"), file)
 class TestAddTaskDfx:
     def setup(self):
-        self.driver = webdriver.Chrome("D:/chromedriver/chromedriver.exe")
+        self.driver = webdriver.Chrome()
         self.driver.maximize_window()
         self.driver.implicitly_wait(20)
         # 访问"登录"页面
         self.driver.get("http://192.168.7.131:8081/#/login")
         # 登录
         login_page.LoginScenario(self.driver).login('admin', 'admin')
+        time.sleep(2)
 
     def test_add_odb(self, file):
         # 递交任务
         add_task_dfx.TaskDfxScenario(self.driver).add_task(file)
+        # if add_task_dfx.AddTaskDfxOper(self.driver).get_add_task_success_info_text() == 'DFX分析':
 
+    # def teardown(self):
+    #         self.driver.quit()
 
-    def teardown(self):
-        self.driver.quit()

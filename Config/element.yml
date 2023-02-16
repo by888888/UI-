@@ -13,11 +13,19 @@ dfx_task:
   #是否选择上一次选择，选择否
   last_selection: css,.el-message-box__btns > button:nth-child(1) > span:nth-child(1)
   #点击规则集下拉框
-  rulegrop: xpath,//input[@placeholder='请选择规则集名称']
+  #rulegrop: xpath,/html/body/div[1]/section/section/main/div[1]/div[2]/div/form/div[8]/div/div[3]/div/div/div/div/div/input
+  rulegrop: xpath,//*[@id="app"]/section/section/main/div[1]/div[2]/div/form/div[8]/div/div[3]/div/div/div/div/div/input
   #选择规则集
-  rulegrop_select: xpath,/html/body/div[3]/div[1]/div[1]/ul/li[11]/span
+  rulegrop_select: xpath,/html/body/div[4]/div[1]/div[1]/ul/li[11]/span
   #选择对象--全部
   object_all: xpath,//*[@id="app"]/section/section/main/div[1]/div[2]/div/form/div[10]/div/div[1]/label[3]/span[1]/span
+  #检查对应——text
+  object_text: css,div.bold:nth-child(9) > span:nth-child(1)
   #检测/递交任务按钮
-  add_task_finally : css,button.el-button--primary:nth-child(1) > span:nth-child(1)
+  add_task_finally: xpath,//*[@id="app"]/section/section/main/div[1]/div[4]/button[1]/span
+  #检测选择“全部-光学点”，
+  object_all_point: xpath,/html/body/div[1]/section/section/main/div[1]/div[2]/div/form/div[10]/div/div[3]/div/div[3]/label/span[2]/span
+  #检测是否递交任务成功
+  add_task_success_info: css,.app > div:nth-child(1) > span:nth-child(1)
+
 

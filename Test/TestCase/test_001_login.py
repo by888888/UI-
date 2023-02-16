@@ -16,7 +16,7 @@ data = parse_csv(data_file)
 class TestLogin():
 
     def test_login(self, username, password,status):
-        self.driver = webdriver.Chrome("D:/chromedriver/chromedriver.exe")
+        self.driver = webdriver.Chrome()
         self.driver.maximize_window()
         self.driver.implicitly_wait(20)
         # 访问"登录"页面
