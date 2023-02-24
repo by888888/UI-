@@ -1,7 +1,7 @@
 login:
   username: css,.user-input > input:nth-child(1)
   password: css,div.el-form-item:nth-child(2) > div:nth-child(2) > div:nth-child(1) > input:nth-child(1)
-  login_submit: css,.el-button
+  login_submit: xpath,/html/body/div[1]/div/div[3]/div[2]/form/div[3]/div/button/span
   logging_text: css,.app > div:nth-child(1) > span:nth-child(1)
   flash_error: css,#app > div > div.middle > div.middle-two > span
 
@@ -14,9 +14,9 @@ dfx_task:
   last_selection: css,.el-message-box__btns > button:nth-child(1) > span:nth-child(1)
   #点击规则集下拉框
   #rulegrop: xpath,/html/body/div[1]/section/section/main/div[1]/div[2]/div/form/div[8]/div/div[3]/div/div/div/div/div/input
-  rulegrop: xpath,//*[@id="app"]/section/section/main/div[1]/div[2]/div/form/div[8]/div/div[3]/div/div/div/div/div/input
-  #选择规则集
-  rulegrop_select: xpath,/html/body/div[4]/div[1]/div[1]/ul/li[11]/span
+  rulegrop: xpath,/html/body/div[1]/section/section/main/div[1]/div[2]/div/form/div[8]/div/div[3]/div/div/div/div/div/span/span/i
+  #选择规则集--demo-std
+  rulegrop_select: xpath,/html/body/div[3]/div[1]/div[1]/ul/li[11]/span
   #选择对象--全部
   object_all: xpath,//*[@id="app"]/section/section/main/div[1]/div[2]/div/form/div[10]/div/div[1]/label[3]/span[1]/span
   #检查对应——text
@@ -25,7 +25,18 @@ dfx_task:
   add_task_finally: xpath,//*[@id="app"]/section/section/main/div[1]/div[4]/button[1]/span
   #检测选择“全部-光学点”，
   object_all_point: xpath,/html/body/div[1]/section/section/main/div[1]/div[2]/div/form/div[10]/div/div[3]/div/div[3]/label/span[2]/span
-  #检测是否递交任务成功
-  add_task_success_info: css,.app > div:nth-child(1) > span:nth-child(1)
+  #检测是否递交任务成功--DFX分析
+  add_task_success_info: xpath,/html/body/div[1]/section/section/main/div/div/div[1]/span
+
+service:
+  #服务菜单
+  service_menu_1: css,li.el-submenu:nth-child(7) > div:nth-child(1) > span:nth-child(2)
+  #下拉后的服务
+  service_menu_2: css,li.is-active:nth-child(1) > span:nth-child(2)
+  #任务数
+  task_process: xpath,/html/body/div/section/section/main/div/div[2]/div/div[3]/table/tbody/tr[3]/td[5]/div/span
+  #服务ip
+  service_ip: xpath,/html/body/div/section/section/main/div/div[2]/div/div[3]/table/tbody/tr[3]/td[2]/div/span
+
 
 

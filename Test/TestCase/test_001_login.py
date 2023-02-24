@@ -13,7 +13,7 @@ data = parse_csv(data_file)
 
 
 @pytest.mark.parametrize(("username", "password", "status"), data)
-class TestLogin():
+class TestLogin:
 
     def test_login(self, username, password,status):
         self.driver = webdriver.Chrome()

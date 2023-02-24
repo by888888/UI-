@@ -2,6 +2,8 @@
 登录页面
 '''
 # 页面元素对象层
+import time
+
 from selenium.webdriver import ActionChains
 from Base.base import Base
 from Common.parse_yml import parse_yml
@@ -107,3 +109,4 @@ class LoginScenario(object):
         self.login_oper.input_password(password)
         # self.login_oper.input_verification_code()
         self.login_oper.click_login_btn()
+        time.sleep(1)

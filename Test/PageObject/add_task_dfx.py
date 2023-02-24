@@ -20,7 +20,7 @@ add_task_finally = parse_yml(element, "dfx_task", "add_task_finally")
 object_text = parse_yml(element, "dfx_task", "object_text")
 add_task_success_info = parse_yml(element, "dfx_task", "add_task_success_info")
 object_all_point = parse_yml(element, "dfx_task", "object_all_point")
-
+# print(object_all_point)
 
 # print(add_task_start)
 
@@ -64,7 +64,7 @@ class AddTaskDfx(object):
         return ele
 
     def find_add_task_success_info(self):
-        ele = Base(self.driver).get_element(add_task_finally)
+        ele = Base(self.driver).get_element(add_task_success_info)
         return ele
 
     def find_object_all_point(self):
@@ -116,7 +116,7 @@ class AddTaskDfxOper(object):
 
     # 查找递交任务后的元素
     def get_add_task_success_info_text(self):
-        return self.add_task.find_add_task_success_info().text()
+        return self.add_task.find_add_task_success_info().text
 
 
 # 页面业务场景层
@@ -125,23 +125,26 @@ class TaskDfxScenario(object):
         self.add_dfx_task = AddTaskDfxOper(driver)
         self.find_task_element = AddTaskDfx(driver)
         self.public_method = public_method.public_method(driver)
+        self.driver = driver
 
     def add_task(self, file):
         # 定义一个递交任务的场景
         self.add_dfx_task.click_add_task_start_btn()
         self.add_dfx_task.input_file(file)
+        # self.driver.implicitly_wait(10)
+        time.sleep(1)
         # 等待最后一次选择的出现
-        self.public_method.show_wait(self.find_task_element.find_last_selection())
         self.add_dfx_task.click_last_selection_btn()
+        time.sleep(1)
         self.public_method.scroll_height(object_text)
-        time.sleep(2)
+        time.sleep(1)
         self.add_dfx_task.click_rulegrop_btn()
-        self.public_method.show_wait(self.find_task_element.find_rulegrop_select())
+        time.sleep(1)
         self.add_dfx_task.click_rulegrop_select()
         self.add_dfx_task.click_object_all_btn()
-        self.public_method.show_wait(self.find_task_element.find_object_all_point())
+        time.sleep(1)
         self.add_dfx_task.click_add_task_finally_btn()
-        self.public_method.show_wait(self.find_task_element.find_add_task_success_info())
+        time.sleep(2)
 
 
 
