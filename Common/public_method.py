@@ -1,4 +1,6 @@
 # 公用的封装方法
+import re
+
 from selenium import webdriver
 from time import sleep
 from Base.base import Base
@@ -22,13 +24,6 @@ class public_method:
         ele = WebDriverWait(self.driver, 20).until(lambda x: element.is_displayed())
         return ele
 
-    # 传入元素的定位方法和值进行显式等待，等待可点击
-    # def clickable(self, by, locator_path):
-    #     wait = WebDriverWait(self.driver, 10, 0.2)
-    #     element = wait.until(EC.element_to_be_clickable((by, locator_path)))
-    #     return element
-    #
-
     # 单击btn
     def click_btn(self, element):
         return ActionChains(self.driver).click(element).perform()
@@ -36,21 +31,22 @@ class public_method:
 
 
 
-    # driver = webdriver.Chrome()
-    # url = 'http://www.sogou.com'
-    # driver.get(url)
-    # time.sleep(2)
-    #
-    # input_box = driver.find_element_by_id('query')  # 获取需要等待的元素
-    # visibility_by_element(input_box)  # 调用自定义封装的方法进行显式等待
-    # visibility_by_xpath("//input[@id='query']")  # 调用自定义封装的方法进行显式等待
-    # input_box.send_keys('天天向上')
-    # button = clickable(By.ID, 'stb')  # 调用自定义封装的方法进行显式等待
-    # button.click
-    # time.sleep(3)
-    # driver.close()
 
-    # 显示等待
+# driver = webdriver.Chrome()
+# url = 'http://www.sogou.com'
+# driver.get(url)
+# time.sleep(2)
+#
+# input_box = driver.find_element_by_id('query')  # 获取需要等待的元素
+# visibility_by_element(input_box)  # 调用自定义封装的方法进行显式等待
+# visibility_by_xpath("//input[@id='query']")  # 调用自定义封装的方法进行显式等待
+# input_box.send_keys('天天向上')
+# button = clickable(By.ID, 'stb')  # 调用自定义封装的方法进行显式等待
+# button.click
+# time.sleep(3)
+# driver.close()
+
+# 显示等待
 # driver = webdriver.Chrome()
 # driver.get('http://192.168.7.131:8081/#/login')
 # driver.maximize_window()

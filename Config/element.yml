@@ -4,6 +4,8 @@ login:
   login_submit: xpath,/html/body/div[1]/div/div[3]/div[2]/form/div[3]/div/button/span
   logging_text: css,.app > div:nth-child(1) > span:nth-child(1)
   flash_error: css,#app > div > div.middle > div.middle-two > span
+  #点击退出
+  login_out: xpath,//*[@id="app"]/section/header/div/div[1]/span[3]
 
 dfx_task:
   # 递交任务
@@ -28,15 +30,20 @@ dfx_task:
   #检测是否递交任务成功--DFX分析
   add_task_success_info: xpath,/html/body/div[1]/section/section/main/div/div/div[1]/span
 
+
 service:
+  #状态是分析中：
+  process_num: class,el-table__row
   #服务菜单
-  service_menu_1: css,li.el-submenu:nth-child(7) > div:nth-child(1) > span:nth-child(2)
+  service_menu_1: xpath,//*[@id="app"]/section/section/aside/div/ul/li[7]/div/span
   #下拉后的服务
-  service_menu_2: css,li.is-active:nth-child(1) > span:nth-child(2)
+  service_menu_2: xpath,//*[@id="app"]/section/section/aside/div/ul/li[7]/ul/li/span
   #任务数
   task_process: xpath,/html/body/div/section/section/main/div/div[2]/div/div[3]/table/tbody/tr[3]/td[5]/div/span
   #服务ip
   service_ip: xpath,/html/body/div/section/section/main/div/div[2]/div/div[3]/table/tbody/tr[3]/td[2]/div/span
+  #DFX分析
+  dfx_analyise: xpath,/html/body/div[1]/section/section/aside/div/ul/li[1]/ul/li[1]/span
 
 
 

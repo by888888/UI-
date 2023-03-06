@@ -1,35 +1,33 @@
 from selenium import webdriver
 import time, pytest, allure, os
 from Test.PageObject import login_page
-from Common.parse_csv import parse_csv
+from Common.parse_csv import ParseCsv
 from Test.PageObject import add_task_dfx
-from Common.get_project_path import get_project_path
 
-file_path = os.path.join(get_project_path(), "Data", "test_002_task_dfx.csv")
-file = parse_csv(file_path)
+data_file = ParseCsv(file_path="Data", file_name="test_002_task_dfx.csv").parse_any_csv()
 
 
-# # 通过时间戳构造唯一项目名
-# project_name = 'project_{}'.format(time.time())
-@pytest.mark.parametrize(("file", "status"), file)
-class TestAddTaskDfx:
+class TestAddDfxTask:
+
     def setup(self):
         self.driver = webdriver.Chrome()
         self.driver.maximize_window()
         self.driver.implicitly_wait(20)
         # 访问"登录"页面
-        self.driver.get("http://192.168.7.131:8081/#/login")
+        self.driver.get("http://127.0.0.1:8081/#/login")
         # 登录
-        login_page.LoginScenario(self.driver).login('admin', 'admin')
+        login_page.LoginScenario(self.driver).login_success()
         time.sleep(2)
+        self.add_dfx_task_odb = add_task_dfx.TaskDfxScenario(self.driver)
+        self.add_dfx_task_oper = add_task_dfx.AddTaskDfxOper(self.driver)
+        self.task_file = ParseCsv(file_path="Data", file_name="test_002_task_dfx.csv").parse_any_csv()
 
-    def test_add_odb(self, file, status):
+    def test_add_odb(self):
         # 递交任务
-        add_task_dfx.TaskDfxScenario(self.driver).add_task(file)
-        if status == '100':
-            add_success = add_task_dfx.AddTaskDfxOper(self.driver).get_add_task_success_info_text()
-            assert add_success == 'DFX分析'
+        # data = self.data
+        self.add_dfx_task_odb.add_task_dfx_analysis(self.task_file)
+        add_success = self.add_dfx_task_oper.get_add_task_success_info_text()
+        assert ('DFX分析', add_success)
 
     def teardown(self):
-        # if add_task_dfx.AddTaskDfxOper(self.driver).get_add_task_success_info_text() == "DFX分析":
         self.driver.quit()

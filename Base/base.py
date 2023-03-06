@@ -54,7 +54,7 @@ class Base(object):
         except Exception as e:
             raise e
 
-    def get_elements(self, locator, sec=20):
+    def get_elements(self, locator, sec=60):
         """
         获取一组元素
         :param locator: 定位方法+定位表达式组合字符串，用逗号分隔，如"id,kw"

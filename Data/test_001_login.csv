@@ -1,3 +1,4 @@
-username,password,status
-admin,error,101
-admin,admin,100
+username,password
+admin,admin
+admin,error
+

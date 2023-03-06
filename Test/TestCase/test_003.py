@@ -7,7 +7,7 @@ from Common.get_project_path import get_project_path
 from Test.PageObject import add_task_dfx
 
 host_file = os.path.join(get_project_path(), "Config", "redmine.yml")
-data_file = os.path.join(get_project_path(), "Data", "test_003.csv")
+data_file = os.path.join(get_project_path(), "Data", "test_003_service_num.csv")
 host = parse_yml(host_file, "website", "host")
 data = parse_csv(data_file)
 

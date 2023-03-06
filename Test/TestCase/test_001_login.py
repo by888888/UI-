@@ -2,36 +2,35 @@ from selenium import webdriver
 import time, pytest, allure, os
 from Test.PageObject import login_page
 from Common.parse_yml import parse_yml
-from Common.parse_csv import parse_csv
+
 from Common.get_project_path import get_project_path
 from Test.PageObject import add_task_dfx
 
 host_file = os.path.join(get_project_path(), "Config", "redmine.yml")
-data_file = os.path.join(get_project_path(), "Data", "test_001_login.csv")
 host = parse_yml(host_file, "website", "host")
-data = parse_csv(data_file)
 
 
-@pytest.mark.parametrize(("username", "password", "status"), data)
 class TestLogin:
-
-    def test_login(self, username, password,status):
+    def setup(self):
         self.driver = webdriver.Chrome()
         self.driver.maximize_window()
         self.driver.implicitly_wait(20)
         # 访问"登录"页面
         self.driver.get(host)
-        # 登录
-        login_page.LoginScenario(self.driver).login(username, password)
-        # 登录的提示
-        if status == '100':
-            login_success = login_page.LoginOper(self.driver).get_login_name()
-            assert login_success == 'DFX分析'
-        elif status == '101':
-            login_failure = login_page.LoginOper(self.driver).get_login_failed_info()
-            assert login_failure == 'Vayo-DFX设计执行系统'
-        self.driver.close()
-# #
-# #
-# if __name__ == '__main__':
-#     pytest.main(['-s', 'test_001_login.py'])
+        self.login_dfx = login_page.LoginScenario(self.driver)
+        self.login_dfx_text = login_page.LoginOper(self.driver)
+
+    def test_login_success(self):
+        # 登录成功
+        self.login_dfx.login_success()
+        login_success = self.login_dfx_text.get_login_name()
+        assert ('DFX分析', login_success)
+
+    def test_login_fail(self):
+        # 登录失败
+        self.login_dfx.login_fail()
+        login_failure = login_page.LoginOper(self.driver).get_login_failed_info()
+        assert ('Vayo-DFX设计执行系统', login_failure)
+
+    def teardown(self):
+        self.driver.quit()
