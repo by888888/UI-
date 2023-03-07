@@ -3,8 +3,12 @@ import time, pytest, allure, os
 from Test.PageObject import login_page
 from Common.parse_csv import ParseCsv
 from Test.PageObject import add_task_dfx
+from Common.parse_yml import ParseYml
 
-data_file = ParseCsv(file_path="Data", file_name="test_002_task_dfx.csv").parse_any_csv()
+host = ParseYml(file_path='Config', file_name='redmine.yml').parse_yml('website')
+
+
+# data_file = ParseCsv(file_path="Data", file_name="test_002_task_dfx.csv").parse_any_csv()
 
 
 class TestAddDfxTask:
@@ -14,7 +18,7 @@ class TestAddDfxTask:
         self.driver.maximize_window()
         self.driver.implicitly_wait(20)
         # 访问"登录"页面
-        self.driver.get("http://127.0.0.1:8081/#/login")
+        self.driver.get(host['host'])
         # 登录
         login_page.LoginScenario(self.driver).login_success()
         time.sleep(2)
@@ -23,8 +27,6 @@ class TestAddDfxTask:
         self.task_file = ParseCsv(file_path="Data", file_name="test_002_task_dfx.csv").parse_any_csv()
 
     def test_add_odb(self):
-        # 递交任务
-        # data = self.data
         self.add_dfx_task_odb.add_task_dfx_analysis(self.task_file)
         add_success = self.add_dfx_task_oper.get_add_task_success_info_text()
         assert ('DFX分析', add_success)

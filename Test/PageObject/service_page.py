@@ -1,25 +1,10 @@
-'''
-登录页面
-'''
-# 页面元素对象层
 import time
-
-from selenium.webdriver import ActionChains
 from Base.base import Base
-from Common.parse_yml import parse_yml
-from Common.get_project_path import get_project_path
-import os, re
+from Common.parse_yml import ParseYml
+import re
 from Common.public_method import public_method
 from Common.parse_csv import ParseCsv
 from Test.PageObject import add_task_dfx
-
-element = os.path.join(get_project_path(), "Config", "element.yml")
-service_menu_1 = parse_yml(element, "service", "service_menu_1")
-service_menu_2 = parse_yml(element, "service", "service_menu_2")
-task_process = parse_yml(element, "service", "task_process")
-service_ip = parse_yml(element, "service", "service_ip")
-process_num = parse_yml(element, "service", "process_num")
-dfx_analyise = parse_yml(element, "service", "dfx_analyise")
 
 
 # 查找定位元素
@@ -27,36 +12,37 @@ class ServicePage(object):
     def __init__(self, driver):
         # 私有方法
         self.driver = driver
+        self.element = ParseYml(file_path='Config', file_name='element.yml').parse_yml('service')
 
     def find_process_num(self):
         # 查找状态中：分析中的个数元素
-        ele = Base(self.driver).get_elements(process_num)
+        ele = Base(self.driver).get_elements(self.element['process_num'])
         return ele
 
     def find_service_menu_1(self):
         # 查找服务的菜单的元素
-        ele = Base(self.driver).get_element(service_menu_1)
+        ele = Base(self.driver).get_element(self.element['service_menu_1'])
         return ele
 
     def find_service_menu_2(self):
         # 查找二级服务菜单的元素
-        ele = Base(self.driver).get_element(service_menu_2)
+        ele = Base(self.driver).get_element(self.element['service_menu_2'])
         return ele
 
     def find_task_process(self):
         # 查找正在进行的任务数元素
-        ele = Base(self.driver).get_element(task_process)
+        ele = Base(self.driver).get_element(self.element['task_process'])
         return ele
 
     def find_service_ip(self):
         # 查找服务中的ip文本
         # ele = self.driver.find_element_by_id('loggedas')
-        ele = Base(self.driver).get_element(service_ip)
+        ele = Base(self.driver).get_element(self.element['service_ip'])
         return ele
 
     def find_dfx_analyise(self):
         # 查找任务菜单栏中的DFX任务元素
-        ele = Base(self.driver).get_element(dfx_analyise)
+        ele = Base(self.driver).get_element(self.element['dfx_analyise'])
         return ele
 
 

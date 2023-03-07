@@ -1,13 +1,8 @@
 from selenium import webdriver
 import time, pytest, allure, os
 from Test.PageObject import login_page
-from Common.parse_yml import parse_yml
-
-from Common.get_project_path import get_project_path
-from Test.PageObject import add_task_dfx
-
-host_file = os.path.join(get_project_path(), "Config", "redmine.yml")
-host = parse_yml(host_file, "website", "host")
+from Common.parse_yml import ParseYml
+host = ParseYml(file_path='Config', file_name='redmine.yml').parse_yml('website')
 
 
 class TestLogin:
@@ -16,7 +11,7 @@ class TestLogin:
         self.driver.maximize_window()
         self.driver.implicitly_wait(20)
         # 访问"登录"页面
-        self.driver.get(host)
+        self.driver.get(host['host'])
         self.login_dfx = login_page.LoginScenario(self.driver)
         self.login_dfx_text = login_page.LoginOper(self.driver)
 

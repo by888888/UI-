@@ -1,78 +1,53 @@
-'''
-"项目列表"页面
-'''
-from selenium.webdriver.support.wait import WebDriverWait
-from selenium.webdriver import ActionChains
 from Base.base import Base
 from Common.parse_yml import ParseYml
-import os, time
-from Common.get_project_path import get_project_path
+import time
 from Common import public_method
-from Common.parse_csv import ParseCsv
-
-element = ParseYml(file_path="Config", file_name="element.yml")
-add_task_start = element.parse_yml("dfx_task", "add_task_start")
-upload_dragged = element.parse_yml("dfx_task", "upload_dragged")
-last_selection = element(element, "dfx_task", "last_selection")
-rulegrop = element(element, "dfx_task", "rulegrop")
-rulegrop_select = parse_yml(element, "dfx_task", "rulegrop_select")
-object_all = parse_yml(element, "dfx_task", "object_all")
-add_task_finally = parse_yml(element, "dfx_task", "add_task_finally")
-object_text = parse_yml(element, "dfx_task", "object_text")
-add_task_success_info = parse_yml(element, "dfx_task", "add_task_success_info")
-object_all_point = parse_yml(element, "dfx_task", "object_all_point")
-
-
-# print(object_all_point)
-
-# print(add_task_start)
 
 
 # 查找定位元素
 class AddTaskDfx(object):
     def __init__(self, driver):
         self.driver = driver
-        self.element = ParseYml(file_path="Config", file_name="element.yml")
-
+        self.element = ParseYml(file_path="Config", file_name="element.yml").parse_yml('dfx_task')
 
     def find_add_task_start(self):
-        ele = Base(self.driver).get_element(add_task_start)
+        ele = Base(self.driver).get_element(self.element['add_task_start'])
         return ele
 
     def find_upload_dragged(self):
-        ele = Base(self.driver).get_element(upload_dragged)
+        ele = Base(self.driver).get_element(self.element['upload_dragged'])
         return ele
 
     def find_last_selection(self):
-        ele = Base(self.driver).get_element(last_selection)
+        ele = Base(self.driver).get_element(self.element['last_selection'])
         return ele
 
     def find_rulegrop(self):
-        ele = Base(self.driver).get_element(rulegrop)
+        ele = Base(self.driver).get_element(self.element['rulegrop'])
         return ele
 
     def find_rulegrop_select(self):
-        ele = Base(self.driver).get_element(rulegrop_select)
+        ele = Base(self.driver).get_element(self.element['rulegrop_select'])
         return ele
 
     def find_object_all(self):
-        ele = Base(self.driver).get_element(object_all)
+        ele = Base(self.driver).get_element(self.element['object_all'])
         return ele
 
     def find_object_text(self):
-        ele = Base(self.driver).get_element(object_text)
+        ele = Base(self.driver).get_element(self.element['object_text'])
         return ele
 
     def find_add_task_finally(self):
-        ele = Base(self.driver).get_element(add_task_finally)
+        ele = Base(self.driver).get_element(self.element['add_task_finally'])
         return ele
 
     def find_add_task_success_info(self):
-        ele = Base(self.driver).get_element(add_task_success_info)
+        ele = Base(self.driver).get_element(self.element['add_task_success_info'])
         return ele
 
     def find_object_all_point(self):
-        ele = Base(self.driver).get_element(object_all_point)
+        ele = Base(self.driver).get_element(self.element['object_all_point'])
         return ele
 
 
@@ -123,15 +98,8 @@ class TaskDfxScenario(object):
         self.find_task_element = AddTaskDfx(driver)
         self.public_method = public_method.public_method(driver)
         self.driver = driver
+        self.element = ParseYml(file_path="Config", file_name="element.yml").parse_yml('dfx_task')
         # self.data = ParseCsv(file_path="Data", file_name="test_002_task_dfx.csv").parse_any_csv()
-
-    # def __get_data(self):
-    #     """
-    #     获取到测试数据
-    #     :param row: 获取到第几行测试数据
-    #     :return:
-    #     """
-    #     return ParseCsv(file_path="Data", file_name="test_002_task_dfx.csv").parse_any_csv()
 
     def add_task_dfx_analysis(self, data):
         # data = self.__get_data()
@@ -144,7 +112,7 @@ class TaskDfxScenario(object):
             # 等待最后一次选择的出现
             self.add_dfx_task.click_last_selection_btn()
             time.sleep(1)
-            self.public_method.scroll_height(object_text)
+            self.public_method.scroll_height(self.element['object_text'])
             time.sleep(1)
             self.add_dfx_task.click_rulegrop_btn()
             time.sleep(1)
