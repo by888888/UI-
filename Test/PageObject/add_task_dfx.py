@@ -64,7 +64,7 @@ class AddTaskDfxOper(object):
 
     # 上传文件
     def input_file(self, file):
-        self.add_task.find_upload_dragged().send_keys(file)
+        self.add_task.find_upload_dragged().send_keys(r"{}".format(file))
 
     # 上一次选择否
     def click_last_selection_btn(self):
@@ -122,17 +122,17 @@ class TaskDfxScenario(object):
             self.add_dfx_task.click_add_task_finally_btn()
             time.sleep(3)
 
-# if __name__ == '__main__':
-#     from selenium import webdriver
-#     from time import sleep
-#     from Test.PageObject import login_page
-#     driver = webdriver.Chrome()
-#     driver.maximize_window()
-#     driver.implicitly_wait(20)
-#     # 访问"登录"页面
-#     driver.get("http://192.168.7.131:8081/#/login")
-#     # 登录
-#     login_page.LoginScenario(driver).login('admin', 'admin')
-#
-#     # file = 'C:\\Users\\Administrator\\Desktop\\ODB\\PCADEMODFM_V1.zip'
-#     TaskDfxScenario(driver).add_task_dfx_analysis()
+if __name__ == '__main__':
+    from selenium import webdriver
+    from time import sleep
+    from Test.PageObject import login_page
+    driver = webdriver.Chrome()
+    driver.maximize_window()
+    driver.implicitly_wait(20)
+    # 访问"登录"页面
+    driver.get("http://192.168.7.131:8081/#/login")
+    # 登录
+    login_page.LoginScenario(driver).login_success()
+
+    file = 'C:\\Users\\Administrator\\Desktop\\ODB\\PCADEMODFM_V1.zip'
+

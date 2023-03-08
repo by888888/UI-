@@ -96,7 +96,9 @@ class ServiceScenario(object):
         # 获取当前运行的任务数量
         self.__add_task.add_task_dfx_analysis(self.__get_data)
         # while self.service_oper.get_process_num_info("分析中"self.__get_data) == len(self.__get_data):
+        time.sleep(10)
         self.service_oper.click_service_menu_1()
+        time.sleep(2)
         self.service_oper.click_service_menu_2()
         # self.service_oper.get_service_ip_info()
         # self.service_oper.get_service_process_info()
@@ -117,22 +119,22 @@ class ServiceScenario(object):
         self.service_oper.click_dfx_analyise()
 
 
-# if __name__ == '__main__':
-#     from selenium import webdriver
-#     from Test.PageObject import login_page
-#     from Test.PageObject import add_task_dfx
-#
-#     driver = webdriver.Chrome()
-#     driver.maximize_window()
-#     driver.implicitly_wait(20)
-#     # 访问"登录"页面
-#     driver.get("http://127.0.0.1:8081/#/login")
-#     # 登录
-#     login_page.LoginScenario(driver).login_success()
-#     time.sleep(2)
-#     ServiceOper(driver).click_service_menu_1()
-#     ServiceOper(driver).click_service_menu_2()
-#     text1 = ServiceOper(driver).get_service_ip_info()
+if __name__ == '__main__':
+    from selenium import webdriver
+    from Test.PageObject import login_page
+    from Test.PageObject import add_task_dfx
+
+    driver = webdriver.Chrome()
+    driver.maximize_window()
+    driver.implicitly_wait(20)
+    # 访问"登录"页面
+    driver.get("http://vxian.synology.me:8081/#/login")
+    # 登录
+    login_page.LoginScenario(driver).login_success()
+    time.sleep(2)
+    ServiceOper(driver).click_service_menu_1()
+    ServiceOper(driver).click_service_menu_2()
+    text1 = ServiceOper(driver).get_service_ip_info()
 #     if text1 == '192.168.7.131':
 #         text2 = ServiceOper(driver).get_service_process_info()
 #         print(text2)

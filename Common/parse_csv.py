@@ -46,6 +46,7 @@ class ParseCsv:
 if __name__ == '__main__':
     data = ParseCsv(file_path="Data", file_name="test_003_service_num.csv").parse_any_csv()
     print(len(data))
+    print(data)
 
     # print(data[1])
     # print(data[1])

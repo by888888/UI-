@@ -17,14 +17,13 @@ class TestService:
         # 登录
         login_page.LoginScenario(self.driver).login_success()
         time.sleep(3)
-        self.service = service_page.ServiceScenario(self.driver)
-        self.service_oper = service_page.ServiceOper(self.driver)
+        # self.service_oper = service_page.ServiceOper(self.driver)
 
     def test_service_num(self):
         # 服务中运行任务数和递交任务数是否对应
-        self.service.service_run_num()
-        self.service_oper.click_dfx_analyise()
-        time.sleep(5)
+        service_page.ServiceScenario(self.driver).service_run_num()
+        # self.service_oper.click_dfx_analyise()
+        # time.sleep(5)
 
         # self.task_num = service_page.ServiceOper(self.driver).get_service_process_info()
         # assert ("3", self.task_num)
