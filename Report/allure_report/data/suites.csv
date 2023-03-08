@@ -1,4 +1,0 @@
-"Status","Start Time","Stop Time","Duration in ms","Parent Suite","Suite","Sub Suite","Test Class","Test Method","Name","Description"
-"broken","Tue Jan 10 13:12:25 CST 2023","Tue Jan 10 13:12:34 CST 2023","9829","Test.TestCase","test_baidu","","","","test_steps_demo[pytest]",""
-"broken","Tue Jan 10 13:12:16 CST 2023","Tue Jan 10 13:12:24 CST 2023","8587","Test.TestCase","test_baidu","","","","test_steps_demo[allure]",""
-"broken","Tue Jan 10 13:12:35 CST 2023","Tue Jan 10 13:12:48 CST 2023","12940","Test.TestCase","test_baidu","","","","test_steps_demo[unittest]",""

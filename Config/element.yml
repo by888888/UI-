@@ -39,11 +39,9 @@ service:
   #下拉后的服务
   service_menu_2: xpath,//*[@id="app"]/section/section/aside/div/ul/li[7]/ul/li/span
   #任务数
-  task_process: xpath,/html/body/div/section/section/main/div/div[2]/div/div[3]/table/tbody/tr[3]/td[5]/div/span
+  task_process: xpath,/html/body/div[1]/section/section/main/div/div[2]/div/div[3]/table/tbody/tr[4]/td[5]/div/span
   #服务ip
   service_ip: xpath,/html/body/div/section/section/main/div/div[2]/div/div[3]/table/tbody/tr[3]/td[2]/div/span
   #DFX分析
   dfx_analyise: xpath,/html/body/div[1]/section/section/aside/div/ul/li[1]/ul/li[1]/span
-
-
 

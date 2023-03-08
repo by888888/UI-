@@ -36,7 +36,6 @@ class ServicePage(object):
 
     def find_service_ip(self):
         # 查找服务中的ip文本
-        # ele = self.driver.find_element_by_id('loggedas')
         ele = Base(self.driver).get_element(self.element['service_ip'])
         return ele
 
@@ -80,7 +79,7 @@ class ServiceOper(object):
         return self.service_page.find_service_ip().text
 
     def click_dfx_analyise(self):
-        # 对下拉后的服务进行点击
+        # 菜单栏中的dfx任务进行点击
         self.public_method.click_btn(self.service_page.find_dfx_analyise())
 
 
@@ -99,12 +98,43 @@ class ServiceScenario(object):
         # while self.service_oper.get_process_num_info("分析中"self.__get_data) == len(self.__get_data):
         self.service_oper.click_service_menu_1()
         self.service_oper.click_service_menu_2()
-        self.service_oper.get_service_ip_info()
+        # self.service_oper.get_service_ip_info()
+        # self.service_oper.get_service_process_info()
         while True:
-            if self.service_oper.get_service_process_info() == len(self.__get_data):
+            self.service_oper.get_service_ip_info()
+            time.sleep(2)
+            process_info = self.service_oper.get_service_process_info()
+            if process_info == len(self.__get_data):
                 break
             else:
-                self.service_oper.get_service_ip_info()
-                time.sleep(2)
-                self.service_oper.get_service_process_info()
                 self.driver.refresh()
+
+        #         # self.service_oper.get_service_ip_info()
+        #         # time.sleep(2)
+        #         # process = self.service_oper.get_service_process_info()
+        #         # if process == len(self.__get_data):
+        #         #     break
+        self.service_oper.click_dfx_analyise()
+
+
+# if __name__ == '__main__':
+#     from selenium import webdriver
+#     from Test.PageObject import login_page
+#     from Test.PageObject import add_task_dfx
+#
+#     driver = webdriver.Chrome()
+#     driver.maximize_window()
+#     driver.implicitly_wait(20)
+#     # 访问"登录"页面
+#     driver.get("http://127.0.0.1:8081/#/login")
+#     # 登录
+#     login_page.LoginScenario(driver).login_success()
+#     time.sleep(2)
+#     ServiceOper(driver).click_service_menu_1()
+#     ServiceOper(driver).click_service_menu_2()
+#     text1 = ServiceOper(driver).get_service_ip_info()
+#     if text1 == '192.168.7.131':
+#         text2 = ServiceOper(driver).get_service_process_info()
+#         print(text2)
+#     print(text1)
+#

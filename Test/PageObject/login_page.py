@@ -113,19 +113,19 @@ class LoginScenario(object):
         self.login_oper.click_login_btn()
 
 
-if __name__ == '__main__':
-    from selenium import webdriver
-
-    driver = webdriver.Chrome()
-    driver.maximize_window()
-    driver.implicitly_wait(20)
-    # 访问"登录"页面
-    driver.get("http://192.168.8.165:8081/#/login")
-    # 登录
-    c = "分析完成"
-    LoginScenario(driver).login_success()
-    a = "class,el-table__row"
-    b = Base(driver).get_elements(a)
-    for i in b:
-        data = re.findall(c, i.text)
-        print(data)
+# if __name__ == '__main__':
+#     from selenium import webdriver
+#
+#     driver = webdriver.Chrome()
+#     driver.maximize_window()
+#     driver.implicitly_wait(20)
+#     # 访问"登录"页面
+#     driver.get("http://192.168.8.165:8081/#/login")
+#     # 登录
+#     c = "分析完成"
+#     LoginScenario(driver).login_success()
+#     # a = "class,el-table__row"
+    # b = Base(driver).get_elements(a)
+    # for i in b:
+    #     data = re.findall(c, i.text)
+    #     print(data)
