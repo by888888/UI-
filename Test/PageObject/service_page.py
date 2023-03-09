@@ -103,13 +103,14 @@ class ServiceScenario(object):
         # self.service_oper.get_service_ip_info()
         # self.service_oper.get_service_process_info()
         while True:
-            self.service_oper.get_service_ip_info()
+            self.driver.refresh()
+            service_ip_info = self.service_oper.get_service_ip_info()
             time.sleep(2)
-            process_info = self.service_oper.get_service_process_info()
-            if process_info == len(self.__get_data):
-                break
-            else:
-                self.driver.refresh()
+            if service_ip_info =="192.168.7.131":
+                process_info = self.service_oper.get_service_process_info()
+                if process_info == len(self.__get_data):
+                    break
+
 
         #         # self.service_oper.get_service_ip_info()
         #         # time.sleep(2)
@@ -128,15 +129,17 @@ if __name__ == '__main__':
     driver.maximize_window()
     driver.implicitly_wait(20)
     # 访问"登录"页面
-    driver.get("http://vxian.synology.me:8081/#/login")
+    driver.get("http://127.0.0.1:8081/#/login")
     # 登录
     login_page.LoginScenario(driver).login_success()
+
     time.sleep(2)
     ServiceOper(driver).click_service_menu_1()
     ServiceOper(driver).click_service_menu_2()
     text1 = ServiceOper(driver).get_service_ip_info()
-#     if text1 == '192.168.7.131':
-#         text2 = ServiceOper(driver).get_service_process_info()
-#         print(text2)
-#     print(text1)
+    if text1 == '192.168.7.131':
+        text2 = ServiceOper(driver).get_service_process_info()
+        if text2 == "3":
+            print(text2)
+    print(text1)
 #

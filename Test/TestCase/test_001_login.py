@@ -19,6 +19,7 @@ class TestLogin:
     def test_login_success(self):
         # 登录成功
         login_page.LoginScenario(self.driver).login_success()
+        self.driver.implicitly_wait(20)
         login_success = login_page.LoginOper(self.driver).get_login_name()
         AssertScreen(self.driver, "Screenshot", "").sreen_shot("DFX分析", login_success, "login_success_pass_01.png",
                                                                "login_success_fail_02.png")
@@ -26,6 +27,7 @@ class TestLogin:
     def test_login_fail(self):
         # 登录失败
         login_page.LoginScenario(self.driver).login_fail()
+        self.driver.implicitly_wait(20)
         login_failure = login_page.LoginOper(self.driver).get_login_failed_info()
         AssertScreen(self.driver, "Screenshot", "").sreen_shot("Vayo-DFX设计执行系统", login_failure,
                                                                "login_fail_pass_01.png",

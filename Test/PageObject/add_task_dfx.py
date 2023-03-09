@@ -90,6 +90,9 @@ class AddTaskDfxOper(object):
     def get_add_task_success_info_text(self):
         return self.add_task.find_add_task_success_info().text
 
+    # 点击递交任务后的元素
+    def click_success_info(self):
+        self.public_method.click_btn(self.add_task.find_add_task_finally())
 
 # 页面业务场景层
 class TaskDfxScenario(object):
@@ -120,7 +123,8 @@ class TaskDfxScenario(object):
             self.add_dfx_task.click_object_all_btn()
             time.sleep(1)
             self.add_dfx_task.click_add_task_finally_btn()
-            time.sleep(3)
+            self.add_dfx_task.get_add_task_success_info_text()
+
 
 if __name__ == '__main__':
     from selenium import webdriver
